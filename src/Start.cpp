@@ -16,6 +16,11 @@ void Start::setup()
     // movie
     mov.loadMovie("Start/0308_FULLHD_2.mov");
     mov.play();
+
+
+    // set up for reading QR codes (activate camera)
+    ofSetVerticalSync(true);
+	cam.initGrabber(640, 480);
 }
 
 void Start::update()
@@ -29,6 +34,22 @@ void Start::update()
 		getSharedData().counter = 0;
 		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
 	}
+
+
+    // update for reading QR codes
+	cam.update();
+	if(cam.isFrameNew()){
+		ofxZxing::Result curResult = ofxZxing::decode(cam.getPixelsRef(), true);
+		float curTime = ofGetElapsedTimef();
+		if(curResult.getFound()){
+			result = curResult;
+			lastFound = curTime;
+		} else if(curTime - lastFound > 1){
+            // if we haven't found anything after a second
+			result = curResult; // then update anyway
+		}
+	}
+
 }
 
 void Start::draw()
@@ -38,6 +59,25 @@ void Start::draw()
     topImg.draw(0,0);
     
     mov.draw(0, 0);
+
+
+    // Scan QR codes and get the info
+    if(result.getFound()) {
+        ticketData = result.getText();
+        string from = ofSplitString(ticketData, ",")[0];
+        string to = ofSplitString(ticketData, ",")[1];
+        string flight = ofSplitString(ticketData, ",")[2];
+        string company = ofSplitString(ticketData, ",")[3];
+        string time = ofSplitString(ticketData, ",")[4];
+        cout << company << endl;
+        if(company == "JAL"){
+            //do something for JAL
+        }else if(company == "ANA"){
+            //do something for ANA
+        }
+        changeState("Flight");
+	}
+
 }
 
 void Start::mousePressed(int x, int y, int button)

@@ -14,6 +14,8 @@
 #include "ofxState.h"
 #include "shareData.h"
 #include "ofxTrueTypeFontUC.h"
+#include "ofxZxing.h"
+
 
 class Start : public itg::ofxState<SharedData>
 {
@@ -38,7 +40,14 @@ public:
     // video
     ofVideoPlayer mov;
 
-    
+    //QRcode
+    ofxZxing::Result result;
+	ofImage logo_ana;
+	ofImage logo_jal;
+	ofVideoGrabber cam;
+	float lastFound;
+    string ticketData;
+        
 	string getName();
     
 };
