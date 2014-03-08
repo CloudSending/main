@@ -48,6 +48,7 @@ void Measure1::draw()
     
     // 文字の描画
     ofSetColor(255);
+// To Do: なんかエラーが出たので直す
 //    myFont.drawString(sampleString, p1.x, p1.y);
 //    myFont.drawStringAsShapes(sampleString2, p2.x, p2.y);
     
@@ -82,7 +83,26 @@ void Measure1::mousePressed(int x, int y, int button)
 	changeState("Measure2");
 }
 
-string Measure1::getName()
-{
+
+//--------------------------------------------------------------
+void Measure1::keyPressed(int key){
+    switch (key) {
+        case 'a':
+            changeState("Flight");
+            break;
+            
+        case 's':
+            changeState("Measure2");
+            break;
+        default:
+            break;
+    }
+}
+
+
+//--------------------------------------------------------------
+string Measure1::getName(){
 	return "Measure1";
 }
+
+

@@ -60,9 +60,10 @@ void Start::draw()
     
     mov.draw(0, 0);
 
-
-    // Scan QR codes and get the info
-    if(result.getFound()) {
+    // go to the next scene when detected
+    if(result.getFound())
+    {
+        // Scan QR codes and get the info
         ticketData = result.getText();
         string from = ofSplitString(ticketData, ",")[0];
         string to = ofSplitString(ticketData, ",")[1];
@@ -75,6 +76,8 @@ void Start::draw()
         }else if(company == "ANA"){
             //do something for ANA
         }
+
+        // go to the next
         changeState("Flight");
 	}
 
@@ -84,6 +87,25 @@ void Start::mousePressed(int x, int y, int button)
 {
 	changeState("Scan");
 }
+
+
+//--------------------------------------------------------------
+void Start::keyPressed(int key){
+    switch (key) {
+        case 'a':
+            changeState("End");
+            break;
+            
+        case 's':
+            changeState("Flight");
+            break;
+        default:
+            break;
+    }
+}
+
+
+
 
 string Start::getName()
 {

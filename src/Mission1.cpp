@@ -90,11 +90,17 @@ string Mission1::getName()
 	return "Mission1";
 }
 
+//--------------------------------------------------------------
 void Mission1::keyPressed(int key){
-    cout << key << endl;
-    sendSerial(key);
-    
     switch (key) {
+        case 'a':
+            changeState("Measure3");
+            break;
+            
+        case 's':
+            changeState("Mission2");            
+            break;
+
         case ' ':
             start = !start;
             break;

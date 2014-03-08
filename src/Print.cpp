@@ -100,6 +100,23 @@ void Print::mousePressed(int x, int y, int button)
 	changeState("End");
 }
 
+//--------------------------------------------------------------
+void Print::keyPressed(int key){
+    switch (key) {
+        case 'a':
+            changeState("Mission2");
+            break;
+            
+        case 's':
+            changeState("End");            
+            break;
+        default:
+            break;
+    }
+}
+
+
+
 string Print::getName()
 {
 	return "Print";    

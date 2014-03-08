@@ -20,18 +20,19 @@ void Flight::setup()
 
 void Flight::update()
 {
-	if (ofGetElapsedTimeMillis() - getSharedData().lastUpdate > 1000)
-	{
+    // each 1 second
+	if (ofGetElapsedTimeMillis() - getSharedData().lastUpdate > 1000){
 		getSharedData().counter++;
 		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
         
-        // 時間がたったら次へ
-        
-        if (getSharedData().counter > 7) {
-            change = true;;
+        // flag to change from mapImg to flightImg
+        if (getSharedData().counter > 5){
+            change = true;
         }
-        
-        if (getSharedData().counter > 10) {
+
+        // go to the next scene
+        if (getSharedData().counter > 10){
+            getSharedData().counter = 0;
             changeState("Measure1");
         }
 	}
@@ -48,12 +49,29 @@ void Flight::draw()
     }
 }
 
+
 void Flight::mousePressed(int x, int y, int button)
 {
 	changeState("Measure1");
 }
 
+
 string Flight::getName()
 {
 	return "Flight";
+}
+
+//--------------------------------------------------------------
+void Flight::keyPressed(int key){
+    switch (key) {
+        case 'a':
+            changeState("Start");
+            break;
+            
+        case 's':
+            changeState("Measure1");            
+            break;
+        default:
+            break;
+    }
 }

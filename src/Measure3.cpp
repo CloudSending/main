@@ -130,6 +130,23 @@ void Measure3::mousePressed(int x, int y, int button)
 	changeState("Mission1");
 }
 
+
+//--------------------------------------------------------------
+void Measure3::keyPressed(int key){
+    switch (key) {
+        case 'a':
+            changeState("Measure2");
+            break;
+            
+        case 's':
+            changeState("Mission1");            
+            break;
+        default:
+            break;
+    }
+}
+
+
 string Measure3::getName()
 {
 	return "Measure3";

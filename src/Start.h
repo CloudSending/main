@@ -24,6 +24,9 @@ public:
 	void update();
 	void draw();
 	void mousePressed(int x, int y, int button);
+    void keyPressed(int key);
+	string getName();
+
     
     // img
     ofImage topImg;
@@ -47,9 +50,7 @@ public:
 	ofVideoGrabber cam;
 	float lastFound;
     string ticketData;
-        
-	string getName();
-    
+
 };
 
 #endif /* defined(__cloudSending__Start__) */

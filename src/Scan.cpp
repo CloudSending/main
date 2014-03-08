@@ -74,7 +74,24 @@ void Scan::mousePressed(int x, int y, int button)
 	changeState("Flight");
 }
 
+//--------------------------------------------------------------
+void Scan::keyPressed(int key){
+    switch (key) {
+        case 'a':
+            changeState("Start");
+            break;
+
+        case 's':
+            changeState("Flight");            
+            break;
+        default:
+            break;
+    }
+}
+
+
 string Scan::getName()
 {
 	return "Scan";
 }
+

@@ -44,13 +44,18 @@ void End::mousePressed(int x, int y, int button)
 	changeState("Start");
 }
 
-string End::getName()
-{
-	return "End";
-}
 
+//--------------------------------------------------------------
 void End::keyPressed(int key){
     switch (key) {
+        case 'a':
+            changeState("Print");
+            break;
+            
+        case 's':
+            changeState("Start");
+            break;
+            
         case ' ':
             _count++;
             if(_count > 2){
@@ -61,4 +66,9 @@ void End::keyPressed(int key){
         default:
             break;
     }
+}
+
+string End::getName()
+{
+	return "End";
 }

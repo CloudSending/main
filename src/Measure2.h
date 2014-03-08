@@ -22,6 +22,9 @@ public:
 	void update();
 	void draw();
 	void mousePressed(int x, int y, int button);
+    void keyPressed(int key);
+	string getName();
+
     
     // img
     ofImage img;
@@ -36,9 +39,6 @@ public:
     // font
     ofTrueTypeFont font;
     ofTrueTypeFont font2;
-    
-	string getName();
-    
 };
 
 #endif /* defined(__cloudSending__Measure2__) */

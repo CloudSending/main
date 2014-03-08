@@ -46,8 +46,18 @@ string Mission2::getName()
 	return "Mission2";
 }
 
+
+//--------------------------------------------------------------
 void Mission2::keyPressed(int key){
     switch (key) {
+        case 'a':
+            changeState("Mission1");
+            break;
+            
+        case 's':
+            changeState("Print");
+            break;
+
         case ' ':
             _count++;
             if(_count == 4){
