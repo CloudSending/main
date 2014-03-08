@@ -43,7 +43,7 @@ void Mission1::update()
         
         // 時間がたったら次へ
         if (getSharedData().counter > 21) {
-            //sendSerial(48);    // jの信号を送る
+            sendSerial(0);    // 0の信号を送る
             
             // initialize
             x = 0;
