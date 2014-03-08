@@ -11,6 +11,13 @@
 int start;
 AnimCurve curve;
 
+//--------------------------------------------------------------
+string Measure1::getName(){
+	return "Measure1";
+}
+
+
+//--------------------------------------------------------------
 void Measure1::setup()
 {
     // 文字の表示
@@ -36,6 +43,16 @@ void Measure1::setup()
     
 }
 
+
+//--------------------------------------------------------------
+void Measure1::init()
+{
+    pos = f;
+}
+
+
+
+//--------------------------------------------------------------
 void Measure1::update()
 {
     float dt = 1.0f / ofGetFrameRate();
@@ -44,7 +61,7 @@ void Measure1::update()
 
     /*TO DO:
     　if(体重計の上にスーツケーツが乗った){
-        pos = f;
+        init();
         changeState("Measure2");
      }
      */
@@ -89,7 +106,7 @@ void Measure1::draw()
 //--------------------------------------------------------------
 void Measure1::mousePressed(int x, int y, int button)
 {
-    pos = f;
+    init();
 	changeState("Measure2");
 }
 
@@ -98,24 +115,18 @@ void Measure1::mousePressed(int x, int y, int button)
 void Measure1::keyPressed(int key){
     switch (key) {
         case 'a':
-            pos = f;
+            init();
             changeState("Flight");
             break;
             
         case 's':
-            pos = f;
+            init();
             changeState("Measure2");
             break;
 
         default:
             break;
     }
-}
-
-
-//--------------------------------------------------------------
-string Measure1::getName(){
-	return "Measure1";
 }
 
 

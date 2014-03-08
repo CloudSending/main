@@ -24,7 +24,9 @@ public:
 	void mousePressed(int x, int y, int button);
     void keyPressed(int key);
 	string getName();
+    void init();
 
+    
     
     // img
     ofImage img;

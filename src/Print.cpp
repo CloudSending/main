@@ -8,6 +8,14 @@
 
 #include "Print.h"
 
+//--------------------------------------------------------------
+string Print::getName()
+{
+	return "Print";
+}
+
+
+//--------------------------------------------------------------
 void Print::setup()
 {
     // image
@@ -27,18 +35,27 @@ void Print::setup()
     curveNames = ofxAnimatable::getCurveName( curve );
     
     // initialize
+    init();
+    
+    flight.loadImage("Mission2/img/flight2.png");
+    flight.resize(120, 120);
+}
+
+
+//--------------------------------------------------------------
+void Print::init()
+{
     vel = 20;
     _count = 2;
     p.set(250, 900);
     pp.set(ofGetWidth()/2,-100);
     width_x = 0;
     xx = 0;
-    
-    flight.loadImage("Mission2/img/flight2.png");
-    flight.resize(120, 120);
-    
-    
+    getSharedData().counter = 0;
 }
+
+
+
 
 void Print::update()
 {
@@ -46,17 +63,14 @@ void Print::update()
     pos.update( dt );
 
 
-    // timer for each 1 second
+    // timer
 	if (ofGetElapsedTimeMillis() - getSharedData().lastUpdate > 1000)
 	{
 		getSharedData().counter++;
 		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
         
         if (getSharedData().counter > 5) {
-            p.set(250, 900);
-            pp.set(ofGetWidth()/2,-100);
-            width_x = 0;
-            xx = 0;
+            init();
             changeState("End");
         }
     }
@@ -111,10 +125,7 @@ void Print::draw()
 //--------------------------------------------------------------
 void Print::mousePressed(int x, int y, int button)
 {
-    p.set(250, 900);
-    pp.set(ofGetWidth()/2,-100);
-    width_x = 0;
-    xx = 0;
+    init();
 	changeState("End");
 }
 
@@ -123,18 +134,12 @@ void Print::mousePressed(int x, int y, int button)
 void Print::keyPressed(int key){
     switch (key) {
         case 'a':
-            p.set(250, 900);
-            pp.set(ofGetWidth()/2,-100);
-            width_x = 0;
-            xx = 0;
+            init();
             changeState("Mission2");
             break;
             
         case 's':
-            p.set(250, 900);
-            pp.set(ofGetWidth()/2,-100);
-            width_x = 0;
-            xx = 0;
+            init();
             changeState("End");
             break;
 
@@ -144,8 +149,3 @@ void Print::keyPressed(int key){
 }
 
 
-//--------------------------------------------------------------
-string Print::getName()
-{
-	return "Print";    
-}

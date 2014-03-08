@@ -8,6 +8,14 @@
 
 #include "Mission1.h"
 
+//--------------------------------------------------------------
+string Mission1::getName()
+{
+	return "Mission1";
+}
+
+
+//--------------------------------------------------------------
 void Mission1::setup()
 {
     // img
@@ -16,12 +24,7 @@ void Mission1::setup()
     flight2.loadImage("Mission1/img/flight2.png");
     
     // Animation
-    p.set(ofGetWidth()/2-90, 1920);
-    pp.set(ofGetWidth()/2, 0);
-    x = 0;
-    xx = 0;
-    
-    start = true;
+    init();
     
     // Arduino
     device.listDevices();
@@ -30,6 +33,19 @@ void Mission1::setup()
 	device.setup(0, baud); //open the first device
 }
 
+
+//--------------------------------------------------------------
+void Mission1::init()
+{
+    x = 0;
+    xx = 0;
+    p.set(ofGetWidth()/2-90, 1920);
+    pp.set(ofGetWidth()/2, 0);
+    start = true;
+}
+
+
+//--------------------------------------------------------------
 void Mission1::update()
 {
     if(start) {
@@ -82,9 +98,7 @@ void Mission1::draw()
 void Mission1::mousePressed(int x, int y, int button)
 {
     // initialize
-    x = 0;
-    xx = 0;
-    p.set(ofGetWidth()/2-90, 1920);
+    init();
 	changeState("Mission2");
 }
 
@@ -93,16 +107,12 @@ void Mission1::mousePressed(int x, int y, int button)
 void Mission1::keyPressed(int key){
     switch (key) {
         case 'a':
-            x = 0;
-            xx = 0;
-            p.set(ofGetWidth()/2-90, 1920);
+            init();
             changeState("Measure3");
             break;
             
         case 's':
-            x = 0;
-            xx = 0;
-            p.set(ofGetWidth()/2-90, 1920);
+            init();
             changeState("Mission2");
             break;
 
@@ -113,12 +123,6 @@ void Mission1::keyPressed(int key){
         default:
             break;
     }
-}
-
-//--------------------------------------------------------------
-string Mission1::getName()
-{
-	return "Mission1";
 }
 
 

@@ -8,17 +8,33 @@
 
 #include "End.h"
 
+//--------------------------------------------------------------
+string End::getName()
+{
+	return "End";
+}
+
+
+//--------------------------------------------------------------
 void End::setup()
 {
     // initialize
-    _count = 0;
+    init();
     
     // image
     thankyou.loadImage("End/img/thankyou.png");
     end.loadImage("End/img/finish.png");
-    
-    //getSharedData().counter = 0;
 }
+
+
+//--------------------------------------------------------------
+void End::init()
+{
+    _count = 0;
+    getSharedData().counter = 0;
+}
+
+
 
 void End::update()
 {
@@ -28,8 +44,8 @@ void End::update()
 		getSharedData().counter++;
 		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
         
-        if (getSharedData().counter > 10) {
-            getSharedData().counter = 0;
+        if (getSharedData().counter > 5) {
+            init();
             changeState("Start");
         }
     }
@@ -50,7 +66,7 @@ void End::draw()
 
 void End::mousePressed(int x, int y, int button)
 {
-    getSharedData().counter = 0;
+    init();
 	changeState("Start");
 }
 
@@ -59,12 +75,12 @@ void End::mousePressed(int x, int y, int button)
 void End::keyPressed(int key){
     switch (key) {
         case 'a':
-            getSharedData().counter = 0;
+            init();
             changeState("Print");
             break;
             
         case 's':
-            getSharedData().counter = 0;
+            init();
             changeState("Start");
             break;
             
@@ -80,7 +96,3 @@ void End::keyPressed(int key){
     }
 }
 
-string End::getName()
-{
-	return "End";
-}

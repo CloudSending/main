@@ -8,6 +8,14 @@
 
 #include "Measure2.h"
 
+//--------------------------------------------------------------
+string Measure2::getName()
+{
+	return "Measure2";
+}
+
+
+//--------------------------------------------------------------
 void Measure2::setup()
 {
     // img
@@ -33,6 +41,15 @@ void Measure2::setup()
     font2.loadFont("font/avenir-next-medium-sc-latin-1.ttf", 110);
 }
 
+
+//--------------------------------------------------------------
+void Measure2::init()
+{
+    pos = f;
+}
+
+
+
 void Measure2::update()
 {
     float dt = 1.0f / ofGetFrameRate();
@@ -40,7 +57,7 @@ void Measure2::update()
 
     /*
      if(数値が安定したら){
-         pos = f;
+         init();
          changeState("Measure3");
          break;
      }
@@ -104,7 +121,7 @@ void Measure2::draw()
 //--------------------------------------------------------------
 void Measure2::mousePressed(int x, int y, int button)
 {
-    pos = f;
+    init();
 	changeState("Measure3");
 }
 
@@ -113,12 +130,12 @@ void Measure2::mousePressed(int x, int y, int button)
 void Measure2::keyPressed(int key){
     switch (key) {
         case 'a':
-            pos = f;
+            init();
             changeState("Measure1");
             break;
             
         case 's':
-            pos = f;
+            init();
             changeState("Measure3");
             break;
 
@@ -127,9 +144,3 @@ void Measure2::keyPressed(int key){
     }
 }
 
-
-//--------------------------------------------------------------
-string Measure2::getName()
-{
-	return "Measure2";
-}

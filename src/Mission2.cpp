@@ -8,10 +8,18 @@
 
 #include "Mission2.h"
 
+//--------------------------------------------------------------
+string Mission2::getName()
+{
+	return "Mission2";
+}
+
+
+//--------------------------------------------------------------
 void Mission2::setup()
 {
     // initialize
-    _count = 0;
+    init();
 
     // image
     img = new ofImage [4];
@@ -22,6 +30,16 @@ void Mission2::setup()
     }
 }
 
+
+//--------------------------------------------------------------
+void Mission2::init()
+{
+    getSharedData().counter = 0;
+    _count = 0;
+}
+
+
+//--------------------------------------------------------------
 void Mission2::update()
 {
     // each 1 second
@@ -34,8 +52,7 @@ void Mission2::update()
         if (getSharedData().counter > 5) {
             _count++;
             if(_count == 4){
-                _count = 0;
-                getSharedData().counter = 0;
+                init();
                 changeState("Print");
             }
             getSharedData().counter = 0;
@@ -55,7 +72,7 @@ void Mission2::draw()
 //--------------------------------------------------------------
 void Mission2::mousePressed(int x, int y, int button)
 {
-    _count = 0;
+    init();
 	changeState("Print");
 }
 
@@ -64,24 +81,21 @@ void Mission2::mousePressed(int x, int y, int button)
 void Mission2::keyPressed(int key){
     switch (key) {
         case 'a':
-            _count = 0;
+            init();
             changeState("Mission1");
             break;
             
         case 's':
             _count++;
             if(_count == 4){
-                _count = 0;
+                init();
                 changeState("Print");
             }
             break;
 
         case ' ':
-            _count++;
-            if(_count == 4){
-                _count = 0;
-                changeState("Print");
-            }
+            init();
+            changeState("Print");
             break;
             
         default:
@@ -90,9 +104,4 @@ void Mission2::keyPressed(int key){
 }
 
 
-//--------------------------------------------------------------
-string Mission2::getName()
-{
-	return "Mission2";
-}
 

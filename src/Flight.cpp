@@ -8,6 +8,14 @@
 
 #include "Flight.h"
 
+//--------------------------------------------------------------
+string Flight::getName()
+{
+	return "Flight";
+}
+
+
+//--------------------------------------------------------------
 void Flight::setup()
 {
     mapImg.loadImage("Flight/img-04.png");
@@ -15,8 +23,18 @@ void Flight::setup()
     flightImg.loadImage("Flight/img-05.png");
     flightImg.resize(ofGetWidth(), ofGetHeight());
     
-    change = false;
+    init();
 }
+
+
+//--------------------------------------------------------------
+void Flight::init()
+{
+    change = false;
+    getSharedData().counter = 0;
+}
+
+
 
 void Flight::update()
 {
@@ -32,8 +50,7 @@ void Flight::update()
 
         // go to the next scene
         if (getSharedData().counter > 6){
-            change = false;
-            getSharedData().counter = 0;
+            init();
             changeState("Measure1");
         }
 	}
@@ -54,8 +71,7 @@ void Flight::draw()
 //--------------------------------------------------------------
 void Flight::mousePressed(int x, int y, int button)
 {
-    change = false;
-    getSharedData().counter = 0;
+    init();
 	changeState("Measure1");
 }
 
@@ -64,25 +80,16 @@ void Flight::mousePressed(int x, int y, int button)
 void Flight::keyPressed(int key){
     switch (key) {
         case 'a':
-            change = false;
-            getSharedData().counter = 0;
+            init();
             changeState("Start");
             break;
             
         case 's':
-            change = false;
-            getSharedData().counter = 0;
+            init();
             changeState("Measure1");
             break;
 
         default:
             break;
     }
-}
-
-
-//--------------------------------------------------------------
-string Flight::getName()
-{
-	return "Flight";
 }

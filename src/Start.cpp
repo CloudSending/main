@@ -8,6 +8,14 @@
 
 #include "Start.h"
 
+//--------------------------------------------------------------
+string Start::getName()
+{
+	return "Start";
+}
+
+
+//--------------------------------------------------------------
 void Start::setup()
 {
     // img
@@ -24,6 +32,15 @@ void Start::setup()
     initResult = ofxZxing::decode(cam.getPixelsRef(), true);
 }
 
+
+//--------------------------------------------------------------
+void Start::init()
+{
+    result = initResult;
+}
+
+
+//--------------------------------------------------------------
 void Start::update()
 {
     mov.update();
@@ -66,8 +83,9 @@ void Start::draw()
     {
         // Scan QR codes and get info
         ticketData = result.getText();
-        result = initResult;
+
         // go next
+        init();
         changeState("Flight");
 	}
 
@@ -78,7 +96,7 @@ void Start::draw()
 void Start::mousePressed(int x, int y, int button)
 {
 //	changeState("Scan");
-    result = initResult;
+    init();
     changeState("Flight");
 }
 
@@ -87,12 +105,12 @@ void Start::mousePressed(int x, int y, int button)
 void Start::keyPressed(int key){
     switch (key) {
         case 'a':
-            result = initResult;
+            init();
             changeState("End");
             break;
             
         case 's':
-            result = initResult;
+            init();
             changeState("Flight");
             break;
 
@@ -102,8 +120,3 @@ void Start::keyPressed(int key){
 }
 
 
-//--------------------------------------------------------------
-string Start::getName()
-{
-	return "Start";
-}

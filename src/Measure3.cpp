@@ -8,6 +8,15 @@
 
 #include "Measure3.h"
 
+
+//--------------------------------------------------------------
+string Measure3::getName()
+{
+	return "Measure3";
+}
+
+
+//--------------------------------------------------------------
 void Measure3::setup()
 {
     theta = 0;
@@ -34,6 +43,15 @@ void Measure3::setup()
 }
 
 
+//--------------------------------------------------------------
+void Measure3::init()
+{
+    pos = f;
+    vec.clear();
+}
+
+
+
 void Measure3::update()
 {
     // each 1 second
@@ -44,8 +62,7 @@ void Measure3::update()
         
         // 時間がたったら次へ
         if (getSharedData().counter > 5) {
-            pos = f;
-            vec.clear();
+            init();
             changeState("Mission1");
         }
     }
@@ -131,8 +148,7 @@ void Measure3::draw()
 //--------------------------------------------------------------
 void Measure3::mousePressed(int x, int y, int button)
 {
-    pos = f;
-    vec.clear();
+    init();
 	changeState("Mission1");
 }
 
@@ -141,25 +157,16 @@ void Measure3::mousePressed(int x, int y, int button)
 void Measure3::keyPressed(int key){
     switch (key) {
         case 'a':
-            pos = f;
-            vec.clear();
+            init();
             changeState("Measure2");
             break;
             
         case 's':
-            pos = f;
-            vec.clear();
+            init();
             changeState("Mission1");
             break;
 
         default:
             break;
     }
-}
-
-
-//--------------------------------------------------------------
-string Measure3::getName()
-{
-	return "Measure3";
 }

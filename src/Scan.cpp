@@ -8,6 +8,14 @@
 
 #include "Scan.h"
 
+//--------------------------------------------------------------
+string Scan::getName()
+{
+	return "Scan";
+}
+
+
+//--------------------------------------------------------------
 void Scan::setup()
 {
     // img
@@ -16,9 +24,22 @@ void Scan::setup()
     SecondImg.loadImage("Scan/img-03.png");
     SecondImg.resize(ofGetWidth(), ofGetHeight());
    
+
+    init();
+//    scanned = false;
+//    theta=0;
+}
+
+
+//--------------------------------------------------------------
+void Scan::init()
+{
     scanned = false;
     theta=0;
+    vec.clear();
 }
+
+
 
 void Scan::update()
 {
@@ -35,9 +56,7 @@ void Scan::update()
         }
         
         if (getSharedData().counter > 5) {
-            scanned = false;
-            theta=0;
-            vec.clear();
+            init();
             changeState("Flight");
         }
 	}
@@ -66,32 +85,29 @@ void Scan::draw()
     }
 }
 
+
+//--------------------------------------------------------------
 void Scan::mousePressed(int x, int y, int button)
 {
-    theta=0;
-    vec.clear();
-    scanned = false;
+    init();
 	changeState("Flight");
 }
+
 
 //--------------------------------------------------------------
 void Scan::keyPressed(int key){
     switch (key) {
         case 'a':
+            init();
             changeState("Start");
             break;
 
         case 's':
-            changeState("Flight");            
+            init();
+            changeState("Flight");
             break;
         default:
             break;
     }
-}
-
-
-string Scan::getName()
-{
-	return "Scan";
 }
 
