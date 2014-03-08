@@ -33,24 +33,27 @@ void Measure3::setup()
     _frame = 0;
 }
 
+
 void Measure3::update()
 {
+    // each 1 second
 	if (ofGetElapsedTimeMillis() - getSharedData().lastUpdate > 1000)
 	{
 		getSharedData().counter++;
 		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
         
         // 時間がたったら次へ
-        if (getSharedData().counter > 18) {
+        if (getSharedData().counter > 5) {
             pos = f;
             vec.clear();
             changeState("Mission1");
         }
-	}
+    }
     
     float dt = 1.0f / ofGetFrameRate();
     pos.update( dt );
 }
+
 
 void Measure3::draw()
 {
@@ -124,9 +127,12 @@ void Measure3::draw()
     }
 }
 
+
+//--------------------------------------------------------------
 void Measure3::mousePressed(int x, int y, int button)
 {
     pos = f;
+    vec.clear();
 	changeState("Mission1");
 }
 
@@ -135,18 +141,24 @@ void Measure3::mousePressed(int x, int y, int button)
 void Measure3::keyPressed(int key){
     switch (key) {
         case 'a':
+            pos = f;
+            vec.clear();
             changeState("Measure2");
             break;
             
         case 's':
-            changeState("Mission1");            
+            pos = f;
+            vec.clear();
+            changeState("Mission1");
             break;
+
         default:
             break;
     }
 }
 
 
+//--------------------------------------------------------------
 string Measure3::getName()
 {
 	return "Measure3";

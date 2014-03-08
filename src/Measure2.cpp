@@ -37,6 +37,15 @@ void Measure2::update()
 {
     float dt = 1.0f / ofGetFrameRate();
     pos.update( dt );
+
+    /*
+     if(数値が安定したら){
+         pos = f;
+         changeState("Measure3");
+         break;
+     }
+    */
+
 }
 
 void Measure2::draw()
@@ -91,29 +100,35 @@ void Measure2::draw()
     }
 }
 
+
+//--------------------------------------------------------------
 void Measure2::mousePressed(int x, int y, int button)
 {
     pos = f;
 	changeState("Measure3");
 }
 
+
 //--------------------------------------------------------------
 void Measure2::keyPressed(int key){
     switch (key) {
         case 'a':
+            pos = f;
             changeState("Measure1");
             break;
             
         case 's':
-            changeState("Measure3");            
+            pos = f;
+            changeState("Measure3");
             break;
+
         default:
             break;
     }
 }
 
 
-
+//--------------------------------------------------------------
 string Measure2::getName()
 {
 	return "Measure2";

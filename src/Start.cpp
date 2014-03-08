@@ -21,6 +21,7 @@ void Start::setup()
     // set up for reading QR codes (activate camera)
     ofSetVerticalSync(true);
 	cam.initGrabber(640, 480);
+    initResult = ofxZxing::decode(cam.getPixelsRef(), true);
 }
 
 void Start::update()
@@ -63,29 +64,22 @@ void Start::draw()
     // go to the next scene when detected
     if(result.getFound())
     {
-        // Scan QR codes and get the info
+        // Scan QR codes and get info
         ticketData = result.getText();
-        string from = ofSplitString(ticketData, ",")[0];
-        string to = ofSplitString(ticketData, ",")[1];
-        string flight = ofSplitString(ticketData, ",")[2];
-        string company = ofSplitString(ticketData, ",")[3];
-        string time = ofSplitString(ticketData, ",")[4];
-        cout << company << endl;
-        if(company == "JAL"){
-            //do something for JAL
-        }else if(company == "ANA"){
-            //do something for ANA
-        }
-
-        // go to the next
+        result = initResult;
+        // go next
         changeState("Flight");
 	}
 
 }
 
+
+//--------------------------------------------------------------
 void Start::mousePressed(int x, int y, int button)
 {
-	changeState("Scan");
+//	changeState("Scan");
+    result = initResult;
+    changeState("Flight");
 }
 
 
@@ -93,20 +87,22 @@ void Start::mousePressed(int x, int y, int button)
 void Start::keyPressed(int key){
     switch (key) {
         case 'a':
+            result = initResult;
             changeState("End");
             break;
             
         case 's':
+            result = initResult;
             changeState("Flight");
             break;
+
         default:
             break;
     }
 }
 
 
-
-
+//--------------------------------------------------------------
 string Start::getName()
 {
 	return "Start";

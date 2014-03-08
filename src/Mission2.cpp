@@ -24,7 +24,23 @@ void Mission2::setup()
 
 void Mission2::update()
 {
-
+    // each 1 second
+	if (ofGetElapsedTimeMillis() - getSharedData().lastUpdate > 1000)
+	{
+		getSharedData().counter++;
+		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
+        
+        // change images each some seconds, and if it's the last image go next
+        if (getSharedData().counter > 5) {
+            _count++;
+            if(_count == 4){
+                _count = 0;
+                getSharedData().counter = 0;
+                changeState("Print");
+            }
+            getSharedData().counter = 0;
+        }
+    }
 }
 
 void Mission2::draw()
@@ -35,15 +51,12 @@ void Mission2::draw()
     img[_count].draw(0.0, 0.0);
 }
 
+
+//--------------------------------------------------------------
 void Mission2::mousePressed(int x, int y, int button)
 {
-    _count = 2;
+    _count = 0;
 	changeState("Print");
-}
-
-string Mission2::getName()
-{
-	return "Mission2";
 }
 
 
@@ -51,11 +64,16 @@ string Mission2::getName()
 void Mission2::keyPressed(int key){
     switch (key) {
         case 'a':
+            _count = 0;
             changeState("Mission1");
             break;
             
         case 's':
-            changeState("Print");
+            _count++;
+            if(_count == 4){
+                _count = 0;
+                changeState("Print");
+            }
             break;
 
         case ' ':
@@ -70,3 +88,11 @@ void Mission2::keyPressed(int key){
             break;
     }
 }
+
+
+//--------------------------------------------------------------
+string Mission2::getName()
+{
+	return "Mission2";
+}
+

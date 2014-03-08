@@ -40,6 +40,14 @@ void Measure1::update()
 {
     float dt = 1.0f / ofGetFrameRate();
     pos.update( dt );
+
+
+    /*TO DO:
+    　if(体重計の上にスーツケーツが乗った){
+        pos = f;
+        changeState("Measure2");
+     }
+     */
 }
 
 void Measure1::draw()
@@ -77,6 +85,8 @@ void Measure1::draw()
     
 }
 
+
+//--------------------------------------------------------------
 void Measure1::mousePressed(int x, int y, int button)
 {
     pos = f;
@@ -88,12 +98,15 @@ void Measure1::mousePressed(int x, int y, int button)
 void Measure1::keyPressed(int key){
     switch (key) {
         case 'a':
+            pos = f;
             changeState("Flight");
             break;
             
         case 's':
+            pos = f;
             changeState("Measure2");
             break;
+
         default:
             break;
     }

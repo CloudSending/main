@@ -36,20 +36,22 @@ void Mission1::update()
         p.y -= 30;
     }
     
+    // each 1 second
 	if (ofGetElapsedTimeMillis() - getSharedData().lastUpdate > 1000)
 	{
 		getSharedData().counter++;
 		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
         
         // 時間がたったら次へ
-        if (getSharedData().counter > 21) {
+        //if (getSharedData().counter > 21) {
+        if (getSharedData().counter > 10) {
             sendSerial(0);    // 0の信号を送る
             
             // initialize
             x = 0;
             xx = 0;
             p.set(ofGetWidth()/2-90, 1920);
-            
+
             changeState("Mission2");
         }
 	}
@@ -75,30 +77,33 @@ void Mission1::draw()
     }
 }
 
+
+//--------------------------------------------------------------
 void Mission1::mousePressed(int x, int y, int button)
 {
     // initialize
     x = 0;
     xx = 0;
     p.set(ofGetWidth()/2-90, 1920);
-    
 	changeState("Mission2");
 }
 
-string Mission1::getName()
-{
-	return "Mission1";
-}
 
 //--------------------------------------------------------------
 void Mission1::keyPressed(int key){
     switch (key) {
         case 'a':
+            x = 0;
+            xx = 0;
+            p.set(ofGetWidth()/2-90, 1920);
             changeState("Measure3");
             break;
             
         case 's':
-            changeState("Mission2");            
+            x = 0;
+            xx = 0;
+            p.set(ofGetWidth()/2-90, 1920);
+            changeState("Mission2");
             break;
 
         case ' ':
@@ -109,6 +114,13 @@ void Mission1::keyPressed(int key){
             break;
     }
 }
+
+//--------------------------------------------------------------
+string Mission1::getName()
+{
+	return "Mission1";
+}
+
 
 //--------------------------------------------------------------
 void Mission1::sendSerial(int data){

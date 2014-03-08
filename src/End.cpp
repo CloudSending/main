@@ -22,7 +22,17 @@ void End::setup()
 
 void End::update()
 {
-
+    // timer for each 1 second
+	if (ofGetElapsedTimeMillis() - getSharedData().lastUpdate > 1000)
+	{
+		getSharedData().counter++;
+		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
+        
+        if (getSharedData().counter > 10) {
+            getSharedData().counter = 0;
+            changeState("Start");
+        }
+    }
 }
 
 void End::draw()
@@ -49,10 +59,12 @@ void End::mousePressed(int x, int y, int button)
 void End::keyPressed(int key){
     switch (key) {
         case 'a':
+            getSharedData().counter = 0;
             changeState("Print");
             break;
             
         case 's':
+            getSharedData().counter = 0;
             changeState("Start");
             break;
             

@@ -44,6 +44,22 @@ void Print::update()
 {
     float dt = 1.0f / ofGetFrameRate();
     pos.update( dt );
+
+
+    // timer for each 1 second
+	if (ofGetElapsedTimeMillis() - getSharedData().lastUpdate > 1000)
+	{
+		getSharedData().counter++;
+		getSharedData().lastUpdate = ofGetElapsedTimeMillis();
+        
+        if (getSharedData().counter > 5) {
+            p.set(250, 900);
+            pp.set(ofGetWidth()/2,-100);
+            width_x = 0;
+            xx = 0;
+            changeState("End");
+        }
+    }
 }
 
 void Print::draw()
@@ -91,6 +107,8 @@ void Print::draw()
     }
 }
 
+
+//--------------------------------------------------------------
 void Print::mousePressed(int x, int y, int button)
 {
     p.set(250, 900);
@@ -100,23 +118,33 @@ void Print::mousePressed(int x, int y, int button)
 	changeState("End");
 }
 
+
 //--------------------------------------------------------------
 void Print::keyPressed(int key){
     switch (key) {
         case 'a':
+            p.set(250, 900);
+            pp.set(ofGetWidth()/2,-100);
+            width_x = 0;
+            xx = 0;
             changeState("Mission2");
             break;
             
         case 's':
-            changeState("End");            
+            p.set(250, 900);
+            pp.set(ofGetWidth()/2,-100);
+            width_x = 0;
+            xx = 0;
+            changeState("End");
             break;
+
         default:
             break;
     }
 }
 
 
-
+//--------------------------------------------------------------
 string Print::getName()
 {
 	return "Print";    
