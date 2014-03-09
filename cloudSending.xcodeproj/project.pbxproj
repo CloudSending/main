@@ -1113,8 +1113,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
-					/Users/eulicd/Documents/of_v0.8.0_osx_release/addons/ofxZxing/libs/zxing/osx,
-					/Workspaces/openFrameworks/of_v0.8.0_osx_release/addons/ofxZxing/libs/zxing/osx,
+					../../../addons/ofxZxing/libs/zxing/osx,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				SDKROOT = macosx10.8;
@@ -1223,12 +1222,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_49)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_50)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
-					/Users/eulicd/Documents/of_v0.8.0_osx_release/addons/ofxZxing/libs/zxing/iphone42/ios,
-					/Users/eulicd/Documents/of_v0.8.0_osx_release/addons/ofxZxing/libs/zxing/iphone42/sim,
-					/Users/eulicd/Documents/of_v0.8.0_osx_release/addons/ofxZxing/libs/zxing/osx,
-					/Workspaces/openFrameworks/of_v0.8.0_osx_release/addons/ofxZxing/libs/zxing/iphone42/ios,
-					/Workspaces/openFrameworks/of_v0.8.0_osx_release/addons/ofxZxing/libs/zxing/iphone42/sim,
-					/Workspaces/openFrameworks/of_v0.8.0_osx_release/addons/ofxZxing/libs/zxing/osx,
+					../../../addons/ofxZxing/libs/zxing/osx,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.8;
