@@ -17,8 +17,12 @@ void testApp::setup(){
 	stateMachine.getSharedData().counter = 0;
 	stateMachine.getSharedData().lastUpdate = ofGetElapsedTimeMillis();
 	stateMachine.getSharedData().font.loadFont("font/avenir-next-medium-sc-latin-1.ttf", 50);
+
+	// webcam setting
+    stateMachine.getSharedData().qrcodeCamId = 0;
+    stateMachine.getSharedData().weightCamId = 1;
 	
-	// initialise state machine
+    // initialise state machine
 	stateMachine.addState<Start>();
     stateMachine.addState<Scan>();
 	stateMachine.addState<Flight>();
@@ -35,6 +39,7 @@ void testApp::setup(){
     //ofToggleFullscreen();
     
     _frame = 0;
+    
 }
 
 //--------------------------------------------------------------

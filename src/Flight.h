@@ -25,6 +25,7 @@ public:
     void keyPressed(int key);
 	string getName();
     void init();
+    void changeCamera(int id);
 
     
     

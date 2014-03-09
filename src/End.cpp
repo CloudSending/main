@@ -46,6 +46,7 @@ void End::update()
         
         if (getSharedData().counter > 5) {
             init();
+            changeCamera(getSharedData().qrcodeCamId);
             changeState("Start");
         }
     }
@@ -67,6 +68,7 @@ void End::draw()
 void End::mousePressed(int x, int y, int button)
 {
     init();
+    changeCamera(getSharedData().qrcodeCamId);
 	changeState("Start");
 }
 
@@ -81,6 +83,7 @@ void End::keyPressed(int key){
             
         case 's':
             init();
+            changeCamera(getSharedData().qrcodeCamId);
             changeState("Start");
             break;
             
@@ -96,3 +99,10 @@ void End::keyPressed(int key){
     }
 }
 
+
+//--------------------------------------------------------------
+void End::changeCamera(int id){
+    getSharedData().cam.close();
+    getSharedData().cam.setDeviceID(id);
+    getSharedData().cam.initGrabber(640,480); // change this to your settings
+}

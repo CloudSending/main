@@ -11,6 +11,11 @@ public:
 	ofTrueTypeFont font;
     
     int weight;
+
+	ofVideoGrabber cam;
+    
+    int qrcodeCamId;
+    int weightCamId;
 };
 
 

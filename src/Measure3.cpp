@@ -51,7 +51,7 @@ void Measure3::init()
 }
 
 
-
+//--------------------------------------------------------------
 void Measure3::update()
 {
     // each 1 second

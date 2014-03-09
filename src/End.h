@@ -32,6 +32,8 @@ public:
     
     // count
     int _count;
+    
+    void changeCamera(int id);
 };
 
 #endif /* defined(__cloudSending__End__) */

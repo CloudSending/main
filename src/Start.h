@@ -27,6 +27,7 @@ public:
     void keyPressed(int key);
 	string getName();
     void init();
+    void changeCameraTest(int id);
 
     
     // img
@@ -49,7 +50,6 @@ public:
 	ofxZxing::Result initResult;
     ofImage logo_ana;
 	ofImage logo_jal;
-	ofVideoGrabber cam;
 	float lastFound;
     string ticketData;
     

@@ -46,6 +46,7 @@ void Measure2::setup()
 void Measure2::init()
 {
     pos = f;
+    getSharedData().cam.close();
 }
 
 

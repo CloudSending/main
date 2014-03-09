@@ -22,14 +22,15 @@ void Start::setup()
     topImg.loadImage("Start/top.png");
     
     // movie
-    mov.loadMovie("Start/0308_FULLHD_2.mov");
+    mov.loadMovie("Start/ICC_CS_OP_0309.mov");
     mov.play();
 
 
     // set up for reading QR codes (activate camera)
     ofSetVerticalSync(true);
-	cam.initGrabber(640, 480);
-    initResult = ofxZxing::decode(cam.getPixelsRef(), true);
+    getSharedData().cam.setDeviceID(getSharedData().qrcodeCamId);
+    getSharedData().cam.initGrabber(640, 480);
+    initResult = ofxZxing::decode(getSharedData().cam.getPixelsRef(), true);
 }
 
 
@@ -37,6 +38,7 @@ void Start::setup()
 void Start::init()
 {
     result = initResult;
+    getSharedData().cam.close();
 }
 
 
@@ -55,9 +57,9 @@ void Start::update()
 
 
     // update for reading QR codes
-	cam.update();
-	if(cam.isFrameNew()){
-		ofxZxing::Result curResult = ofxZxing::decode(cam.getPixelsRef(), true);
+	getSharedData().cam.update();
+	if(getSharedData().cam.isFrameNew()){
+		ofxZxing::Result curResult = ofxZxing::decode(getSharedData().cam.getPixelsRef(), true);
 		float curTime = ofGetElapsedTimef();
 		if(curResult.getFound()){
 			result = curResult;
@@ -113,10 +115,31 @@ void Start::keyPressed(int key){
             init();
             changeState("Flight");
             break;
+            
+        case '0':
+            changeCameraTest(0);
+            break;
+            
+        case '1':
+            changeCameraTest(1);
+            break;
 
-        default:
+        case '2':
+            changeCameraTest(2);
+            break;
+
+        default :
             break;
     }
 }
+
+
+//--------------------------------------------------------------
+void Start::changeCameraTest(int id){
+    getSharedData().cam.close();
+    getSharedData().cam.setDeviceID(id);
+    getSharedData().cam.initGrabber(640,480); // change this to your settings
+}
+
 
 

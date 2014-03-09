@@ -51,6 +51,7 @@ void Flight::update()
         // go to the next scene
         if (getSharedData().counter > 6){
             init();
+            changeCamera(getSharedData().weightCamId);
             changeState("Measure1");
         }
 	}
@@ -72,6 +73,7 @@ void Flight::draw()
 void Flight::mousePressed(int x, int y, int button)
 {
     init();
+    changeCamera(getSharedData().weightCamId);
 	changeState("Measure1");
 }
 
@@ -86,6 +88,7 @@ void Flight::keyPressed(int key){
             
         case 's':
             init();
+            changeCamera(getSharedData().weightCamId);
             changeState("Measure1");
             break;
 
@@ -93,3 +96,12 @@ void Flight::keyPressed(int key){
             break;
     }
 }
+
+
+//--------------------------------------------------------------
+void Flight::changeCamera(int id){
+ //   getSharedData().cam.close();
+    getSharedData().cam.setDeviceID(id);
+    getSharedData().cam.initGrabber(640,480); // change this to your settings
+}
+
