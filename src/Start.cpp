@@ -91,6 +91,7 @@ void Start::draw()
         changeState("Flight");
 	}
 
+    if(getSharedData().debugMode) debugDraw();
 }
 
 
@@ -141,5 +142,13 @@ void Start::changeCameraTest(int id){
     getSharedData().cam.initGrabber(640,480); // change this to your settings
 }
 
+
+//--------------------------------------------------------------
+void Start::debugDraw(){
+    ofSetColor(0, 0, 0, 0.5);
+    ofRect(0, 0, 20, 10);
+//    ofRect(0, 0, ofGetWidth()/4, ofGetHeight()/8);
+    ofDrawBitmapString(getName(),20,20);
+}
 
 

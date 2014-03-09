@@ -22,6 +22,9 @@ void testApp::setup(){
     stateMachine.getSharedData().qrcodeCamId = 0;
     stateMachine.getSharedData().weightCamId = 1;
 	
+    //debig mode
+    stateMachine.getSharedData().debugMode = false;
+    
     // initialise state machine
 	stateMachine.addState<Start>();
     stateMachine.addState<Scan>();
@@ -33,11 +36,10 @@ void testApp::setup(){
     stateMachine.addState<Mission2>();
     stateMachine.addState<Print>();
     stateMachine.addState<End>();
-    
-	stateMachine.changeState("Start");
-    
+
+    stateMachine.changeState("Start");
+
     //ofToggleFullscreen();
-    
     _frame = 0;
     
 }

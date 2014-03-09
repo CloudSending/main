@@ -28,7 +28,8 @@ public:
 	string getName();
     void init();
     void changeCameraTest(int id);
-
+    void debugDraw();
+    
     
     // img
     ofImage topImg;

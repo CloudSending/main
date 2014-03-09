@@ -16,6 +16,8 @@ public:
     
     int qrcodeCamId;
     int weightCamId;
+    
+    bool debugMode;
 };
 
 
